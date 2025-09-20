@@ -109,7 +109,7 @@ graph TD
     N -- Нет --> R[/count += 1/]
     
     M -- Нет --> U[/count += 0/]
-
+    U --> S[/Вывод count/]
     D --> S
     G --> S
     H --> S
