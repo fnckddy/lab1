@@ -108,7 +108,7 @@ graph TD
     O -- Нет --> Q[/count += 2/]
     N -- Нет --> R[/count += 1/]
     
-    M -- Нет --> S[/Вывод count/]
+    M -- Нет --> U[/count += 0/]
 
     D --> S
     G --> S
@@ -118,6 +118,7 @@ graph TD
     P --> S
     Q --> S
     R --> S
+    U --> S
 
     S --> T([Конец])
 
