@@ -127,6 +127,7 @@ graph TD
 ### 5. Программа
 
 ```java
+
 import java.util.Scanner;
 
 public class Main {
@@ -138,92 +139,43 @@ public class Main {
             int d = sc.nextInt();
 
             int count = 0;
-            // все равны
+            
             if (a > 0 && b > 0 && c > 0 && d > 0) {
+                int t;
+
+                if (a > b) { t = a; a = b; b = t; }
+                if (c > d) { t = c; c = d; d = t; }
+                if (a > c) { t = a; a = c; c = t; }
+                if (b > d) { t = b; b = d; d = t; }
+                if (b > c) { t = b; b = c; c = t; }
+
+                
 
                 if (a == b && b == c && c == d) {
                     count += 4;
-                }
-                // проверка троек
-                if (a == b && b == c && c != d) {
-                    if (a * 2 == d) count += 3;
-                    else count += 2;
-                }
-                if (a == b && b == d && d != c) {
-                    if (a * 2 == c) count += 3;
-                    else count += 2;
-                }
-                if (a == c && c == d && d != b) {
-                    if (a * 2 == b) count += 3;
-                    else count += 2;
-                }
-                if (b == c && c == d && d != a) {
-                    if (b * 2 == a) count += 3;
-                    else count += 2;
-                }
-                // проверка попарно равных
-                if (a == b && c == d && (a + b) != (c + d)) {
-                    if (a * 2 == c || c * 2 == a) count += 4;
-                    else count += 2;
-                }
-                if (a == c && b == d && (a + c) != (b + d)) {
-                    if (a * 2 == b || b * 2 == a) count += 4;
-                    else count += 2;
-                }
-                if (a == d && b == c && (a + d) != (b + c)) {
-                    if (a * 2 == b || b * 2 == a) count += 4;
-                    else count += 2;
-                }
-                // проверка одной равной пары исключая тройки
-                if (a == b && c != d && !( (a == c && c == d) || (a == b && b == d) || (a == b && b == c))) {
-                    if (a * 2 == c || a * 2 == d) {
-                        if (a + c == d || a + d == c) count += 3;
+                } else {
+                    if (a == b && b == c && c != d) {
+                        if (a * 2 == d) count += 3;
                         else count += 2;
                     } else {
-                        count += 1;
+                        if (a == b && c == d) {
+                            if (a * 2 == c || c * 2 == a) count += 4;
+                            else count += 2;
+                        } else {
+                            if (a == b && c != d) {
+                                if (a * 2 == c || a * 2 == d) {
+                                    if (a + c == d || a + d == c) count += 3;
+                                    else count += 2;
+                                } else {
+                                    count += 1;
+                                }
+                            }
+                        }
                     }
                 }
-                if (a == c && b != d && !((a == b && b == d) || (a == c && c == d) || (a == b && b == c))) {
-                    if (a * 2 == b || a * 2 == d) {
-                        if (a + b == d || a + d == b) count += 3;
-                        else count += 2;
-                    } else {
-                        count += 1;
-                    }
-                }
-                if (a == d && b != c && !((a == b && b == c) || (a == c && c == d) || (a == b && b == d))) {
-                    if (a * 2 == b || a * 2 == c) {
-                        if (a + b == c || a + c == b) count += 3;
-                        else count += 2;
-                    } else {
-                        count += 1;
-                    }
-                }
-                if (b == c && a != d && !((b == a && a == d) || (b == c && c == d) || (a == b && b == c))) {
-                    if (b * 2 == a || b * 2 == d) {
-                        if (b + a == d || b + d == a) count += 3;
-                        else count += 2;
-                    } else {
-                        count += 1;
-                    }
-                }
-                if (b == d && a != c && !((b == a && a == c) || (b == c && c == d) || (a == b && b == d))) {
-                    if (b * 2 == a || b * 2 == c) {
-                        if (b + a == c || b + c == a) count += 3;
-                        else count += 2;
-                    } else {
-                        count += 1;
-                    }
-                }
-                if (c == d && a != b && !((c == a && a == b) || (c == b && b == d) || (a == c && c == d))) {
-                    if (c * 2 == a || c * 2 == b) {
-                        if (c + a == b || c + b == a) count += 3;
-                        else count += 2;
-                    } else {
-                        count += 1;
-                    }
-                }
+
             }
+
             System.out.println(count);
         }
     }
